@@ -1,0 +1,25 @@
+.box {
+    margin: 20px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.box box1 {
+    margin: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+}
+
+
+.item-paper {
+    display: flex;
+    justify-content: center; /* Center content inside the Paper */
+    align-items: center;     /* Center content vertically */
+    width: 60vw;           /* Set a fixed width for the Paper (adjust as needed) */
+    height: 70vh;           /* Allow Paper to take full height of the box1 */
+    margin: auto;           /* Center Paper horizontally */
+}
+

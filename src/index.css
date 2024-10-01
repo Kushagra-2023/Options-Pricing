@@ -1,13 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Fira Sans', sans-serif; /* Only use Fira Sans */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #134B70;
+  /* background-image: url('https://cdn.pixabay.com/photo/2024/01/06/02/44/ai-generated-8490532_640.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%; */
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'PT Serif', serif; /* Use PT Serif for code blocks */
 }
+
+/* 
+#201E43
+#134B70
+#508C9B
+#EEEEEE 
+*/
+
