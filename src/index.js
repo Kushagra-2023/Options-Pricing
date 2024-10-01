@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Import your page components
 import Homepage from './pages/Homepage/Homepage';
 import BlackScholes from './pages/BlackScholes/BlackScholes';
+import Binomial from './pages/Binomial/Binomial';
 // import Contact from './pages/Contact';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,6 +18,7 @@ root.render(
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/blackscholes" element={<BlackScholes />} />
+        <Route path="/binomial" element={<Binomial />} />
       </Routes> 
     </BrowserRouter>
   </React.StrictMode>

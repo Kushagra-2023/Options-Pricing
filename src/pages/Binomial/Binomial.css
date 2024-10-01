@@ -1,0 +1,13 @@
+.item-paper {
+    transition: transform 3s ease; /* Smooth transition for dropping effect */
+  }
+  
+  .initial {
+    opacity: 0;
+    transform: translateY(-100px); /* Initial position above the final position */
+  }
+  
+  .drop {
+    transform: translateY(0); /* Final position */
+  }
+  
