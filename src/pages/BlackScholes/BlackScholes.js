@@ -28,10 +28,11 @@ export default function BasicTextFields() {
           flexDirection: 'row',
           flexWrap: 'wrap',
           marginTop: '20vh',
-          transition: 'transform 1.5s ease', // Apply transition
-          transform: isVisible ? 'translateY(0)' : 'translateY(-50px)', // Initial position
+          transition: 'transform 0.3s ease', // Apply transition
+          transform: isVisible ? 'scaleY(1)' : 'scaleY(0)', // Initial position
           padding: '15px',
-          height: 'fit-content'
+          height: 'fit-content',
+          transformOrigin: 'top', // Set the transform origin to the top
         }}
       >
         {/* <Box
@@ -103,7 +104,10 @@ export default function BasicTextFields() {
             borderRadius='7px'
             margin='10px'
           >
-            <TextField id={`outlined-basic-${index}`} label={field} variant="outlined" />
+            <TextField id={`outlined-basic-${index}`} label={field}               
+                required // Make the field mandatory
+              type="number" // Restrict input to numeric values
+              variant="outlined" />
           </Box>
         ))}
       </Paper>
