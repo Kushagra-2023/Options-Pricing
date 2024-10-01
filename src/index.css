@@ -6,6 +6,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #134B70;
+  padding-left: 50px;
+  padding-right: 50px;
   /* background-image: url('https://cdn.pixabay.com/photo/2024/01/06/02/44/ai-generated-8490532_640.png');
   background-repeat: no-repeat;
   background-attachment: fixed;

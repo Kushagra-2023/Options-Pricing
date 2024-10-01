@@ -21,6 +21,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 
 const pages = ['Pricing Models', 'Options Calculator'];
 const settings = ['Stocks'];
@@ -51,12 +52,17 @@ function ResponsiveAppBar() {
 
   const DrawerList = (
     <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+      <List></List>
+      <List></List>
+      <List></List>
+      <List></List>
+      <Divider />
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+        {['Black-Scholes', 'Binomial', 'Monte Carlo'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <KeyboardDoubleArrowRightIcon />
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
@@ -64,7 +70,7 @@ function ResponsiveAppBar() {
         ))}
       </List>
       <Divider />
-      <List>
+      {/* <List>
         {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
@@ -75,6 +81,11 @@ function ResponsiveAppBar() {
             </ListItemButton>
           </ListItem>
         ))}
+      </List> */}
+      <List>
+        <ListItem key="And more in future...">
+          <ListItemText primary="And more in future..." />
+        </ ListItem>
       </List>
     </Box>
   );
@@ -94,7 +105,7 @@ function ResponsiveAppBar() {
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
+              // fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.4rem',
               color: 'black',
@@ -148,7 +159,7 @@ function ResponsiveAppBar() {
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: 'monospace',
+              // fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
