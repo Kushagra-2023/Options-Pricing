@@ -1,12 +1,13 @@
 import * as React from 'react';
+import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import { Paper,Button } from '@mui/material';
+import { Paper, Button, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import Navbar from '../../components/Navbar/Navbar'; // Adjust the path
-import { useEffect, useState } from 'react';
 
 export default function BasicTextFields() {
   const [isVisible, setIsVisible] = useState(false); // State to control visibility
+  const [optiontype, setoptiontype] = useState("Call"); // State for Select component
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -15,6 +16,10 @@ export default function BasicTextFields() {
 
     return () => clearTimeout(timer); // Clean up the timer on unmount
   }, []);
+
+  const handleChange = (event) => {
+    setoptiontype(event.target.value);
+  };
 
   return (
     <div>
@@ -35,8 +40,8 @@ export default function BasicTextFields() {
           transformOrigin: 'top', // Set the transform origin to the top
         }}
       >
-        {["Current stock price", "Strike price", "Time to expiration(in years).", "Risk-free interest rate", "Volatility of the stock", "Number of time steps", "Option type(put/call)"].map((field, index) => (
-        <Box
+        {["Current stock price", "Strike price", "Time to expiration(in years)", "Risk-free interest rate", "Volatility of the stock", "Number of time steps"].map((field, index) => (
+          <Box
             key={index} // Ensure each Box has a unique key
             component="form"
             sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
@@ -45,18 +50,35 @@ export default function BasicTextFields() {
             bgcolor='#EEEEEE'
             borderRadius='7px'
             margin='10px'
-        >
+          >
             <TextField 
-            id={`outlined-basic-${index}`} 
-            label={field}               
-            required // Make the field mandatory
-            type={field === "Option type(put/call)" ? "text" : "number"} // Conditionally set type
-            variant="outlined" 
+              id={`outlined-basic-${index}`} 
+              label={field}               
+              required // Make the field mandatory
+              type="number" // Set the type to number
+              variant="outlined" 
             />
-        </Box>
+          </Box>
         ))}
 
+        {/* Drop-down for selection */}
+        <Box sx={{ minWidth: 120, margin: '10px' }}>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Option Type</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={optiontype}
+              label="OptionType"
+              onChange={handleChange}
+            >
+              <MenuItem value={"Put"}>Put</MenuItem>
+              <MenuItem value={"Call"}>Call</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
       </Paper>
+
       <Paper
         elevation={3}
         className={`item-paper ${isVisible ? 'drop' : 'initial'}`}
@@ -73,7 +95,7 @@ export default function BasicTextFields() {
           transformOrigin: 'top', // Set the transform origin to the top
         }}
       >
-        <Button variant="outlined" color='Black'>Calculate</Button>
+        <Button variant="outlined" color="primary">Calculate</Button>
       </Paper>
     </div>
   );
