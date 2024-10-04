@@ -6,15 +6,15 @@ import { Paper, Button, FormControl, InputLabel, MenuItem, Select } from '@mui/m
 import Navbar from '../../components/Navbar/Navbar'; // Adjust the path
 
 export default function BasicTextFields() {
-  const [isVisible, setIsVisible] = useState(false); // State to control visibility
-  const [optiontype, setoptiontype] = useState("Call"); // State for Select component
+  const [isVisible, setIsVisible] = useState(false); 
+  const [optiontype, setoptiontype] = useState("Call");
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsVisible(true); // Set visibility to true after a short delay
-    }, 100); // Adjust the delay as needed
+      setIsVisible(true); 
+    }, 100); 
 
-    return () => clearTimeout(timer); // Clean up the timer on unmount
+    return () => clearTimeout(timer);
   }, []);
 
   const handleChange = (event) => {
