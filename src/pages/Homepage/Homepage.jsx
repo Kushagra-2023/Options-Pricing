@@ -39,7 +39,7 @@ function Homepage() {
     return (
         <div>
             <Navbar />
-            <Carousel sx={{marginTop: '20vh', transition: '250ms', backgroundColor: 'transparent'}}>
+            <Carousel autoPlay={true} interval={5000} sx={{marginTop: '20vh', backgroundColor: 'transparent'}}>
                 {items.map((item, i) => (
                     <Item key={i} item={item} />
                 ))}

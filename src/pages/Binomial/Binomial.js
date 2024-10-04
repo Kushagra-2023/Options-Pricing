@@ -62,7 +62,7 @@ export default function BasicTextFields() {
         ))}
 
         {/* Drop-down for selection */}
-        <Box sx={{ minWidth: 120, margin: '10px' }}>
+        {/* <Box sx={{ minWidth: 120, margin: '10px' }}>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Option Type</InputLabel>
             <Select
@@ -76,10 +76,35 @@ export default function BasicTextFields() {
               <MenuItem value={"Call"}>Call</MenuItem>
             </Select>
           </FormControl>
+        </Box> */}
+        <Box
+          key='5' // Ensure each Box has a unique key
+          component="form"
+          sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
+          noValidate
+          autoComplete="off"
+          bgcolor='#EEEEEE'
+          borderRadius='7px'
+          margin='10px'
+          >          
+            <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Option type</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"    
+              label="OptionType"
+              required // Makes the dropdown menu mandatory
+              value={optiontype}
+              onChange={handleChange}
+            >
+              <MenuItem value={"Call"}>Call</MenuItem>
+              <MenuItem value={"Put"}>Put</MenuItem>
+            </Select>
+          </FormControl>
         </Box>
       </Paper>
 
-      <Paper
+      {/* <Paper
         elevation={3}
         className={`item-paper ${isVisible ? 'drop' : 'initial'}`}
         sx={{ 
@@ -96,6 +121,31 @@ export default function BasicTextFields() {
         }}
       >
         <Button variant="outlined" color="primary">Calculate</Button>
+      </Paper> */}
+            <Paper
+        elevation={3}
+        className={`item-paper ${isVisible ? 'drop' : 'initial'}`}
+        sx={{ 
+          backgroundColor: 'rgba(32, 30, 67, 0.8)', 
+          display: 'flex',
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          marginTop: '4vh',
+          transition: 'transform 0.3s ease', // Apply transition
+          transform: isVisible ? 'scaleY(1)' : 'scaleY(0.2)', // Initial position
+          padding: '15px',
+          height: 'fit-content',
+          width: 'fit-content',
+          transformOrigin: 'top', // Set the transform origin to the top
+        }}
+      >
+        <Button variant="outlined" color="primary" sx={{ '& > :not(style)': { m: 1, width: '25ch' }, borderColor: "#EEEEEE", color: "#EEEEEE"}}
+          noValidate
+          autoComplete="off"
+          borderRadius='7px'
+          margin='10px'>
+          Calculate
+        </Button>
       </Paper>
     </div>
   );
