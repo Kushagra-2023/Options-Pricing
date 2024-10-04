@@ -52,9 +52,9 @@ function ResponsiveAppBar() {
 
   const handleDrawerItemClick = (route) => {
     if (route === '/homepage') {
-      route = '/'; // Redirect to home
+      route = '/'; 
     }
-    navigate(route); // Navigate to the desired route
+    navigate(route); 
   };
 
   const DrawerList = (

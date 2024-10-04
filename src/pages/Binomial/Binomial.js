@@ -3,22 +3,82 @@ import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Paper, Button, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import Navbar from '../../components/Navbar/Navbar'; // Adjust the path
+import Navbar from '../../components/Navbar/Navbar';
+import BinomialModel from '../../components/BinomialModel/BinomialModel';
+import Typography from '@mui/material/Typography';
 
-export default function BasicTextFields() {
-  const [isVisible, setIsVisible] = useState(false); 
-  const [optiontype, setoptiontype] = useState("Call");
+export default function Binomial() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [option, setOption] = useState('Call');
+  const [assetPrice, setAssetPrice] = useState('');
+  const [timeToMaturity, setTimeToMaturity] = useState('');
+  const [timesteps, setTimeSteps] = useState('');
+  const [strikePrice, setStrikePrice] = useState('');
+  const [volatility, setVolatility] = useState('');
+  const [riskFreeRate, setRiskFreeRate] = useState('');
+  const [display, setDisplay] = useState(option);
+  const [answer, setAnswer] = useState('');
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setIsVisible(true); 
-    }, 100); 
-
+      setIsVisible(true);
+    }, 100);
     return () => clearTimeout(timer);
   }, []);
 
+  const handleCalculateChange = (event) => {
+    if (
+      assetPrice === '' ||
+      timeToMaturity === '' ||
+      strikePrice === '' ||
+      riskFreeRate === '' ||
+      option === '' ||
+      timesteps === ''
+    ) {
+      alert('Please input all the required values!');
+      return;
+    }
+    const calculatedPrice = BinomialModel(
+      parseFloat(assetPrice),
+      parseFloat(strikePrice),
+      parseFloat(timeToMaturity),
+      parseFloat(riskFreeRate),
+      parseFloat(volatility),
+      parseFloat(timesteps),
+      option
+    );
+
+    setAnswer(calculatedPrice);
+    setDisplay(option);
+    console.log(answer);
+  };
+
+  const handleAssetPriceChange = (event) => {
+    setAssetPrice(event.target.value);
+  };
+
+  const handleTimeToMaturityChange = (event) => {
+    setTimeToMaturity(event.target.value);
+  };
+
+  const handleStrikePriceChange = (event) => {
+    setStrikePrice(event.target.value);
+  };
+
+  const handleVolatilityChange = (event) => {
+    setVolatility(event.target.value);
+  };
+
+  const handleRiskFreeRateChange = (event) => {
+    setRiskFreeRate(event.target.value);
+  };
+
+  const handleTimeStpesChange = (event) => {
+    setTimeSteps(event.target.value);
+  };
+
   const handleChange = (event) => {
-    setoptiontype(event.target.value);
+    setOption(event.target.value);
   };
 
   return (
@@ -27,126 +87,133 @@ export default function BasicTextFields() {
       <Paper
         elevation={3}
         className={`item-paper ${isVisible ? 'drop' : 'initial'}`}
-        sx={{ 
-          backgroundColor: 'rgba(32, 30, 67, 0.8)', 
+        sx={{
+          backgroundColor: 'rgba(32, 30, 67, 0.8)',
           display: 'flex',
           flexDirection: 'row',
           flexWrap: 'wrap',
           marginTop: '20vh',
-          transition: 'transform 0.3s ease', // Apply transition
-          transform: isVisible ? 'scaleY(1)' : 'scaleY(0)', // Initial position
+          transition: 'transform 0.3s ease',
+          transform: isVisible ? 'scaleY(1)' : 'scaleY(0)',
           padding: '15px',
           height: 'fit-content',
-          transformOrigin: 'top', // Set the transform origin to the top
+          transformOrigin: 'top',
         }}
       >
-        {["Current stock price", "Strike price", "Time to expiration(in years)", "Risk-free interest rate", "Volatility of the stock", "Number of time steps"].map((field, index) => (
-          <Box
-            key={index} // Ensure each Box has a unique key
-            component="form"
-            sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
-            noValidate
-            autoComplete="off"
-            bgcolor='#EEEEEE'
-            borderRadius='7px'
-            margin='10px'
-          >
-            <TextField 
-              id={`outlined-basic-${index}`} 
-              label={field}               
-              required // Make the field mandatory
-              type="number" // Set the type to number
-              variant="outlined" 
-            />
-          </Box>
-        ))}
-
-        {/* Drop-down for selection */}
-        {/* <Box sx={{ minWidth: 120, margin: '10px' }}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Option Type</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={optiontype}
-              label="OptionType"
-              onChange={handleChange}
+        {[
+          'Current stock price',
+          'Strike price',
+          'Time to expiration(in years)',
+          'Risk-free interest rate',
+          'Volatility of the stock',
+          'Number of time steps',
+        ].map((field, index) => {
+          const handleChangeFunctions = [
+            handleAssetPriceChange,
+            handleTimeToMaturityChange,
+            handleStrikePriceChange,
+            handleVolatilityChange,
+            handleRiskFreeRateChange,
+            handleTimeStpesChange,
+          ];
+          return (
+            <Box
+              key={index}
+              component="form"
+              sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
+              noValidate
+              autoComplete="off"
+              bgcolor="#EEEEEE"
+              borderRadius="7px"
+              margin="10px"
             >
-              <MenuItem value={"Put"}>Put</MenuItem>
-              <MenuItem value={"Call"}>Call</MenuItem>
-            </Select>
-          </FormControl>
-        </Box> */}
+              <TextField
+                id={`outlined-basic-${index}`}
+                label={field}
+                required
+                type="number"
+                variant="outlined"
+                onChange={handleChangeFunctions[index]}
+              />
+            </Box>
+          );
+        })}
         <Box
-          key='5' // Ensure each Box has a unique key
+          key="5"
           component="form"
           sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
           noValidate
           autoComplete="off"
-          bgcolor='#EEEEEE'
-          borderRadius='7px'
-          margin='10px'
-          >          
-            <FormControl fullWidth>
+          bgcolor="#EEEEEE"
+          borderRadius="7px"
+          margin="10px"
+        >
+          <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Option type</InputLabel>
             <Select
               labelId="demo-simple-select-label"
-              id="demo-simple-select"    
+              id="demo-simple-select"
               label="OptionType"
-              required // Makes the dropdown menu mandatory
-              value={optiontype}
+              required
+              value={option}
               onChange={handleChange}
             >
-              <MenuItem value={"Call"}>Call</MenuItem>
-              <MenuItem value={"Put"}>Put</MenuItem>
+              <MenuItem value="Call">Call</MenuItem>
+              <MenuItem value="Put">Put</MenuItem>
             </Select>
           </FormControl>
         </Box>
       </Paper>
-
-      {/* <Paper
+      <Paper
         elevation={3}
         className={`item-paper ${isVisible ? 'drop' : 'initial'}`}
-        sx={{ 
-          backgroundColor: 'rgba(32, 30, 67, 0.8)', 
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          marginTop: '20vh',
-          transition: 'transform 0.3s ease', // Apply transition
-          transform: isVisible ? 'scaleY(1)' : 'scaleY(0)', // Initial position
-          padding: '15px',
-          height: 'fit-content',
-          transformOrigin: 'top', // Set the transform origin to the top
-        }}
-      >
-        <Button variant="outlined" color="primary">Calculate</Button>
-      </Paper> */}
-            <Paper
-        elevation={3}
-        className={`item-paper ${isVisible ? 'drop' : 'initial'}`}
-        sx={{ 
-          backgroundColor: 'rgba(32, 30, 67, 0.8)', 
+        sx={{
+          backgroundColor: 'rgba(32, 30, 67, 0.8)',
           display: 'flex',
           flexDirection: 'row',
           flexWrap: 'wrap',
           marginTop: '4vh',
-          transition: 'transform 0.3s ease', // Apply transition
-          transform: isVisible ? 'scaleY(1)' : 'scaleY(0.2)', // Initial position
+          transition: 'transform 0.3s ease',
+          transform: isVisible ? 'scaleY(1)' : 'scaleY(0.2)',
           padding: '15px',
           height: 'fit-content',
           width: 'fit-content',
-          transformOrigin: 'top', // Set the transform origin to the top
+          transformOrigin: 'top',
         }}
       >
-        <Button variant="outlined" color="primary" sx={{ '& > :not(style)': { m: 1, width: '25ch' }, borderColor: "#EEEEEE", color: "#EEEEEE"}}
+        <Button
+          variant="outlined"
+          color="primary"
+          sx={{
+            '& > :not(style)': { m: 1, width: '25ch' },
+            borderColor: '#EEEEEE',
+            color: '#EEEEEE',
+          }}
           noValidate
           autoComplete="off"
-          borderRadius='7px'
-          margin='10px'>
+          borderRadius="7px"
+          margin="10px"
+          onClick={handleCalculateChange}
+        >
           Calculate
         </Button>
       </Paper>
+      {answer && (
+  <Paper
+    elevation={3}
+    sx={{
+      backgroundColor: 'rgba(32, 30, 67, 0.8)',
+      padding: '15px',
+      width: 'fit-content',
+      color: '#EEEEEE',
+      margin:'auto',
+      marginTop: '4vh',
+    }}
+  >
+    The calculated option price is: {answer}
+  </Paper>
+)}
+
     </div>
   );
 }

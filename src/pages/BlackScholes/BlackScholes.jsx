@@ -12,8 +12,8 @@ import BSModel from '../../components/BlackScholesModel/BlackScholesModel';
 import Typography from '@mui/material/Typography';
 
 
-export default function BasicTextFields() {
-  const [isVisible, setIsVisible] = useState(false); // State to control visibility
+export default function BlackScholes() {
+  const [isVisible, setIsVisible] = useState(false); 
   const [option, setOption] = useState('Call');
 
   const [assetPrice, setAssetPrice] = useState('');
