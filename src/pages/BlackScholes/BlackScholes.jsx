@@ -259,7 +259,7 @@ export default function BasicTextFields() {
         elevation={3}
         className={`item-paper ${isVisible ? 'drop' : 'initial'}`}
         sx={{ 
-          backgroundColor: 'transparent', 
+          backgroundColor: '#508C9B',
           display: 'flex',
           flexDirection: 'row',
           flexWrap: 'wrap',
@@ -272,7 +272,7 @@ export default function BasicTextFields() {
           transformOrigin: 'top', // Set the transform origin to the top
         }}
       >
-        <Typography sx={{ fontWeight: 'bold' }}>
+        <Typography sx={{ fontWeight: 'bold', color: 'black', fontFamily: 'inherit'}}>
           <h2>{display} option premium: {answer}</h2>
         </Typography>
       </Paper>
