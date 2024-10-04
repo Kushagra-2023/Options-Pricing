@@ -18,8 +18,12 @@
     display: flex;
     justify-content: center; /* Center content inside the Paper */
     align-items: center;     /* Center content vertically */
-    width: 60vw;           /* Set a fixed width for the Paper (adjust as needed) */
-    height: 70vh;           /* Allow Paper to take full height of the box1 */
+    /* width: 60vw;           
+    height: 70vh;            */
+    max-width: 59vw;
     margin: auto;           /* Center Paper horizontally */
+    padding: 1px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
