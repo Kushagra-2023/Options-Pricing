@@ -109,64 +109,6 @@ export default function BlackScholes() {
           transformOrigin: 'top', // Set the transform origin to the top
         }}
       >
-        {/* <Box
-          component="form"
-          sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
-          noValidate
-          autoComplete="off"
-          bgcolor='#EEEEEE'
-          borderRadius='7px'
-          margin='10px'
-        >
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-        </Box>
-        <Box
-          component="form"
-          sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
-          noValidate
-          autoComplete="off"
-          bgcolor='#EEEEEE'
-          borderRadius='7px'
-          margin='10px'
-        >
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-        </Box>
-
-        <Box
-          component="form"
-          sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
-          noValidate
-          autoComplete="off"
-          bgcolor='#EEEEEE'
-          borderRadius='7px'
-          margin='10px'
-        >
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-        </Box>
-
-        <Box
-          component="form"
-          sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
-          noValidate
-          autoComplete="off"
-          bgcolor='#EEEEEE'
-          borderRadius='7px'
-          margin='10px'
-        >
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-        </Box>
-
-        <Box
-          component="form"
-          sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
-          noValidate
-          autoComplete="off"
-          bgcolor='#EEEEEE'
-          borderRadius='7px'
-          margin='10px'
-        >
-          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-        </Box> */}
         {["Asset Price", "Time to Maturity", "Strike Price", "Volatility (std/mean)", "Risk-Free Interest Rate (%rate/100)"].map((field, index) => {
           const handleChangeFunctions = [
             handleAssetPriceChange,

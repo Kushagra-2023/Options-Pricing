@@ -5,7 +5,6 @@ import TextField from '@mui/material/TextField';
 import { Paper, Button, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import Navbar from '../../components/Navbar/Navbar';
 import BinomialModel from '../../components/BinomialModel/BinomialModel';
-import Typography from '@mui/material/Typography';
 
 export default function Binomial() {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,7 +15,6 @@ export default function Binomial() {
   const [strikePrice, setStrikePrice] = useState('');
   const [volatility, setVolatility] = useState('');
   const [riskFreeRate, setRiskFreeRate] = useState('');
-  const [display, setDisplay] = useState(option);
   const [answer, setAnswer] = useState('');
 
   useEffect(() => {
@@ -32,53 +30,25 @@ export default function Binomial() {
       timeToMaturity === '' ||
       strikePrice === '' ||
       riskFreeRate === '' ||
+      volatility === '' || 
       option === '' ||
       timesteps === ''
     ) {
       alert('Please input all the required values!');
       return;
     }
+
     const calculatedPrice = BinomialModel(
       parseFloat(assetPrice),
       parseFloat(strikePrice),
       parseFloat(timeToMaturity),
       parseFloat(riskFreeRate),
       parseFloat(volatility),
-      parseFloat(timesteps),
+      parseInt(timesteps),
       option
     );
 
     setAnswer(calculatedPrice);
-    setDisplay(option);
-    console.log(answer);
-  };
-
-  const handleAssetPriceChange = (event) => {
-    setAssetPrice(event.target.value);
-  };
-
-  const handleTimeToMaturityChange = (event) => {
-    setTimeToMaturity(event.target.value);
-  };
-
-  const handleStrikePriceChange = (event) => {
-    setStrikePrice(event.target.value);
-  };
-
-  const handleVolatilityChange = (event) => {
-    setVolatility(event.target.value);
-  };
-
-  const handleRiskFreeRateChange = (event) => {
-    setRiskFreeRate(event.target.value);
-  };
-
-  const handleTimeStpesChange = (event) => {
-    setTimeSteps(event.target.value);
-  };
-
-  const handleChange = (event) => {
-    setOption(event.target.value);
   };
 
   return (
@@ -104,17 +74,17 @@ export default function Binomial() {
           'Current stock price',
           'Strike price',
           'Time to expiration(in years)',
-          'Risk-free interest rate',
           'Volatility of the stock',
+          'Risk-free interest rate',
           'Number of time steps',
         ].map((field, index) => {
           const handleChangeFunctions = [
-            handleAssetPriceChange,
-            handleTimeToMaturityChange,
-            handleStrikePriceChange,
-            handleVolatilityChange,
-            handleRiskFreeRateChange,
-            handleTimeStpesChange,
+            (e) => setAssetPrice(e.target.value),
+            (e) => setStrikePrice(e.target.value),
+            (e) => setTimeToMaturity(e.target.value),
+            (e) => setVolatility(e.target.value),
+            (e) => setRiskFreeRate(e.target.value),
+            (e) => setTimeSteps(e.target.value),
           ];
           return (
             <Box
@@ -156,7 +126,7 @@ export default function Binomial() {
               label="OptionType"
               required
               value={option}
-              onChange={handleChange}
+              onChange={(e) => setOption(e.target.value)}
             >
               <MenuItem value="Call">Call</MenuItem>
               <MenuItem value="Put">Put</MenuItem>
@@ -199,21 +169,20 @@ export default function Binomial() {
         </Button>
       </Paper>
       {answer && (
-  <Paper
-    elevation={3}
-    sx={{
-      backgroundColor: 'rgba(32, 30, 67, 0.8)',
-      padding: '15px',
-      width: 'fit-content',
-      color: '#EEEEEE',
-      margin:'auto',
-      marginTop: '4vh',
-    }}
-  >
-    The calculated option price is: {answer}
-  </Paper>
-)}
-
+        <Paper
+          elevation={3}
+          sx={{
+            backgroundColor: 'rgba(32, 30, 67, 0.8)',
+            padding: '15px',
+            width: 'fit-content',
+            color: '#EEEEEE',
+            margin: 'auto',
+            marginTop: '4vh',
+          }}
+        >
+          The calculated option price is: {answer}
+        </Paper>
+      )}
     </div>
   );
 }
