@@ -36,6 +36,7 @@ function ResponsiveAppBar() {
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
+    navigate('/stocks');
   };
 
   const handleCloseNavMenu = () => {

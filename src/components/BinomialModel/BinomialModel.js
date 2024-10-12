@@ -1,4 +1,3 @@
-import { jStat } from 'jstat';
 function BinomialModel(S, K, T, r, sigma, N, optionType) {
   const dt = T / N;
   const u = Math.exp(sigma * Math.sqrt(dt));
