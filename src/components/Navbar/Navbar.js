@@ -20,6 +20,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import PriceChangeIcon from '@mui/icons-material/PriceChange';
 
 const pages = ['Options Calculator'];
 const settings = ['Stocks'];
@@ -85,7 +86,7 @@ function ResponsiveAppBar() {
       <AppBar position="fixed">
         <Container maxWidth="xl" sx={{ bgcolor: '#508C9B' }}>
           <Toolbar disableGutters>
-            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color: 'black' }} />
+            <PriceChangeIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1, color: 'black' }} />
             <Typography
               variant="h6"
               noWrap
@@ -100,7 +101,7 @@ function ResponsiveAppBar() {
                 textDecoration: 'none',
               }}
             >
-              LOGO
+              OPTIONS
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
