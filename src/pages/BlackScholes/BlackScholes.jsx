@@ -167,7 +167,7 @@ export default function BlackScholes() {
         >
           <TextField id="outlined-basic" label="Outlined" variant="outlined" />
         </Box> */}
-        {["Asset Price", "Time to Maturity", "Strike Price", "Volatility", "Risk-Free Interest Rate (%rate/100)"].map((field, index) => {
+        {["Asset Price", "Time to Maturity", "Strike Price", "Volatility (std/mean)", "Risk-Free Interest Rate (%rate/100)"].map((field, index) => {
           const handleChangeFunctions = [
             handleAssetPriceChange,
             handleTimeToMaturityChange,
