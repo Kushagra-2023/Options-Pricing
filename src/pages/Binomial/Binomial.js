@@ -29,6 +29,7 @@ export default function Binomial() {
   const handleCalculateChange = (event) => {
     if (
       assetPrice === '' ||
+      volatility === '' ||
       timeToMaturity === '' ||
       strikePrice === '' ||
       riskFreeRate === '' ||

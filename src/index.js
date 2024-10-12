@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from './pages/Homepage/Homepage';
 import BlackScholes from './pages/BlackScholes/BlackScholes';
 import Binomial from './pages/Binomial/Binomial';
+import MonteCarlo from './pages/MonteCarlo/MonteCarlo';
 // import Contact from './pages/Contact';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -19,6 +20,7 @@ root.render(
         <Route path="/" element={<Homepage />} />
         <Route path="/blackscholes" element={<BlackScholes />} />
         <Route path="/binomial" element={<Binomial />} />
+        <Route path="/montecarlo" element={<MonteCarlo />} />
       </Routes> 
     </BrowserRouter>
   </React.StrictMode>

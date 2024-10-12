@@ -8,11 +8,11 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import BSModel from '../../components/BlackScholesModel/BlackScholesModel';
+import MonteCarloModel from '../../components/MonteCarloModel/MonteCarloModel';
 import Typography from '@mui/material/Typography';
 
 
-export default function BlackScholes() {
+export default function MoneteCarlo() {
   const [isVisible, setIsVisible] = useState(false); 
   const [option, setOption] = useState('Call');
 
@@ -21,27 +21,29 @@ export default function BlackScholes() {
   const [strikePrice, setStrikePrice] = useState('');
   const [volatility, setVolatility] = useState('');
   const [riskFreeRate, setRiskFreeRate] = useState('');
+  const [numSimulations, setNumSimulations] = useState('');
 
   const [display, setDisplay] = useState(option);
 
   const [answer, setAnswer] = useState('');
 
   const handleCalculateChange = (event) => {
-    if(assetPrice === '' || timeToMaturity === '' || strikePrice === '' || riskFreeRate === '' || option === '')
+    if(assetPrice === '' || timeToMaturity === '' || strikePrice === '' || riskFreeRate === '' || option === '' || numSimulations === '')
     {
       alert("Please input all the required values!");
       return;
     }
-    const calculatedPrice = BSModel(
+    const calculatedPrice = MonteCarloModel(
       parseFloat(assetPrice), 
-      parseFloat(timeToMaturity), 
       parseFloat(strikePrice), 
-      parseFloat(volatility), 
+      parseFloat(timeToMaturity), 
       parseFloat(riskFreeRate), 
+      parseFloat(volatility), 
+      parseFloat(numSimulations),
       option
     );
     
-    setAnswer(calculatedPrice);   
+    setAnswer(calculatedPrice.optionPrice);   
     setDisplay(option); 
 
     // setAssetPrice('');
@@ -73,6 +75,9 @@ export default function BlackScholes() {
     setRiskFreeRate(event.target.value);
   };
 
+  const handleNumSimulationsChange = (event) => {
+    setNumSimulations(event.target.value);
+  };
 
   const handleChange = (event) => {
     setOption(event.target.value);
@@ -167,13 +172,14 @@ export default function BlackScholes() {
         >
           <TextField id="outlined-basic" label="Outlined" variant="outlined" />
         </Box> */}
-        {["Asset Price", "Time to Maturity", "Strike Price", "Volatility", "Risk-Free Interest Rate (%rate/100)"].map((field, index) => {
+        {["Asset Price", "Time to Maturity", "Strike Price", "Volatility", "Risk-Free Interest Rate (%rate/100)", "Number of Simultions"].map((field, index) => {
           const handleChangeFunctions = [
             handleAssetPriceChange,
             handleTimeToMaturityChange,
             handleStrikePriceChange,
             handleVolatilityChange,
             handleRiskFreeRateChange,
+            handleNumSimulationsChange
           ];
 
           return (
@@ -273,7 +279,7 @@ export default function BlackScholes() {
         }}
       >
         <Typography sx={{ fontWeight: 'bold', color: 'black', fontFamily: 'inherit'}}>
-          <h2>{display} option premium: {answer}</h2>
+          <h2>{display} option premium: {answer.toFixed(2)}</h2>
         </Typography>
       </Paper>
     ) : null}
