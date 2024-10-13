@@ -9,11 +9,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Homepage from './pages/Homepage/Homepage';
 import BlackScholes from './pages/BlackScholes/BlackScholes';
 import Binomial from './pages/Binomial/Binomial';
-<<<<<<< HEAD
 import Stocks from './pages/Stocks/Stocks';
-=======
 import MonteCarlo from './pages/MonteCarlo/MonteCarlo';
->>>>>>> 71357e277f72696de6956c46a83fbba618f9bca2
 // import Contact from './pages/Contact';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -24,11 +21,8 @@ root.render(
         <Route path="/" element={<Homepage />} />
         <Route path="/blackscholes" element={<BlackScholes />} />
         <Route path="/binomial" element={<Binomial />} />
-<<<<<<< HEAD
         <Route path='/stocks' element={<Stocks />} />
-=======
         <Route path="/montecarlo" element={<MonteCarlo />} />
->>>>>>> 71357e277f72696de6956c46a83fbba618f9bca2
       </Routes> 
     </BrowserRouter>
   </React.StrictMode>

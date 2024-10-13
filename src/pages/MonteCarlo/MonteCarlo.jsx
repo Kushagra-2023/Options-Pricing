@@ -10,6 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import MonteCarloModel from '../../components/MonteCarloModel/MonteCarloModel';
 import Typography from '@mui/material/Typography';
+import monteCarloOptionPricing from '../../components/MonteCarloModel/MonteCarloModel';
 
 
 export default function MoneteCarlo() {
@@ -33,7 +34,7 @@ export default function MoneteCarlo() {
       alert("Please input all the required values!");
       return;
     }
-    const calculatedPrice = MonteCarloModel(
+    const calculatedPrice = monteCarloOptionPricing(
       parseFloat(assetPrice), 
       parseFloat(strikePrice), 
       parseFloat(timeToMaturity), 
